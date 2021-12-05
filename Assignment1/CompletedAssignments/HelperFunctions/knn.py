@@ -18,9 +18,11 @@ def compute_distances_two_loops(training_data, test_data):
         """
         #compute matrices to hold computed distance points
         num_test = test_data.shape[0]
-        num_train = training_data.shape[0]
+        num_train = training_data.shape[0] 
         dists = np.zeros((num_test, num_train))
         for i in range(num_test):
-            for j in range(num_train):
-                dists[i][j] = math.sqrt((i-j)**2)
+            for j in range(num_train): 
+                curr_test = test_data[i, :] # 1D array
+                curr_train = training_data[j, :] # 1D array
+                dists[i, j] = np.sqrt(np.sum((curr_test - curr_train) ** 2))
         return dists
